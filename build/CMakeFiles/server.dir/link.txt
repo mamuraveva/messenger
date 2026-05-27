@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/server.dir/src/server_main.cpp.o CMakeFiles/server.dir/src/tcp_server.cpp.o CMakeFiles/server.dir/src/packet.cpp.o -o server   -L/opt/homebrew/Cellar/libsodium/1.0.22/lib  -Wl,-rpath,/opt/homebrew/Cellar/libsodium/1.0.22/lib -lsodium
