@@ -4,7 +4,10 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/opt/homebrew/include"
+                "/opt/homebrew/include",
+                "/opt/homebrew/opt/qt/include",
+                "/opt/homebrew/opt/qt/include/QtCore",
+                "/opt/homebrew/opt/qt/include/QtWidgets"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
