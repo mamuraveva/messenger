@@ -1,6 +1,5 @@
 #include "../include/tcp_server.h"
 #include "../include/packet.h"
-
 #include <algorithm>
 #include <arpa/inet.h>
 #include <cerrno>
