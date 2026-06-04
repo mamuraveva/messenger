@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-
 project(cppproject)
-
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -15,16 +13,13 @@ add_executable(server
     src/tcp_server.cpp
     src/packet.cpp
 )
-
 target_include_directories(server PRIVATE
     include
     ${SODIUM_INCLUDE_DIRS}
 )
-
 target_link_directories(server PRIVATE
     ${SODIUM_LIBRARY_DIRS}
 )
-
 target_link_libraries(server PRIVATE
     ${SODIUM_LIBRARIES}
 )
@@ -35,16 +30,13 @@ add_executable(client
     src/tcp_client.cpp
     src/packet.cpp
 )
-
 target_include_directories(client PRIVATE
     include
     ${SODIUM_INCLUDE_DIRS}
 )
-
 target_link_directories(client PRIVATE
     ${SODIUM_LIBRARY_DIRS}
 )
-
 target_link_libraries(client PRIVATE
     ${SODIUM_LIBRARIES}
 )
@@ -56,16 +48,17 @@ add_executable(tests
     src/tcp_server.cpp
     src/packet.cpp
 )
-
 target_include_directories(tests PRIVATE
     include
+    tests
     ${SODIUM_INCLUDE_DIRS}
 )
-
 target_link_directories(tests PRIVATE
     ${SODIUM_LIBRARY_DIRS}
 )
-
 target_link_libraries(tests PRIVATE
     ${SODIUM_LIBRARIES}
 )
+
+enable_testing()
+add_test(NAME all_tests COMMAND tests)
