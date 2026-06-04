@@ -39,6 +39,7 @@ headerLayout->addWidget(appName);
 headerLayout->addStretch();
 headerLayout->addWidget(statusLabel_);
 root->addWidget(header);
+
 // Список сообщений для хранения истории переписки
 messageList_ = new QListWidget(this);
 messageList_->setObjectName("messageList");
@@ -47,11 +48,13 @@ messageList_->setFocusPolicy(Qt::NoFocus);
 messageList_->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 messageList_->verticalScrollBar()->setSingleStep(8);
 root->addWidget(messageList_, 1);
+
 // Панель между историей сообщений и панелью ввода
 auto *divider = new QWidget(this);
 divider->setObjectName("divider");
 divider->setFixedHeight(1);
 root->addWidget(divider);
+
 // Нижняя панель ввода сообщения
 auto *inputBar = new QWidget(this);
 inputBar->setObjectName("inputBar");
@@ -70,6 +73,7 @@ sendBtn_->setCursor(Qt::PointingHandCursor);
 inputLayout->addWidget(inputEdit_);
 inputLayout->addWidget(sendBtn_);
 root->addWidget(inputBar);
+
 // Сообщение можно отправить кнопкой или клавишей Enter
 connect(sendBtn_, &QPushButton::clicked, this, &MainWindow::onSend);
 connect(inputEdit_, &QLineEdit::returnPressed, this, &MainWindow::onSend);
