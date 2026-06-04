@@ -1,3 +1,4 @@
+
 #include "../include/tcp_client.h"
 #include "../include/packet.h"
 #include <arpa/inet.h>
@@ -8,7 +9,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include <vector>
-
+ 
 void TcpClient::receive_loop() {
   while (true) {
     if (!receive_message()) {
@@ -16,7 +17,7 @@ void TcpClient::receive_loop() {
     }
   }
 }
-
+ 
 bool TcpClient::create() {
   socket = ::socket(AF_INET, SOCK_STREAM, 0);
   if (socket < 0) {
@@ -25,7 +26,7 @@ bool TcpClient::create() {
   }
   return true;
 }
-
+ 
 bool TcpClient::connect(const std::string &ip, int port) {
   if (socket < 0) {
     std::cerr << "Ошибка: сокет не создан\n";
@@ -35,7 +36,7 @@ bool TcpClient::connect(const std::string &ip, int port) {
   std::memset(&serverAddr, 0, sizeof(serverAddr));
   serverAddr.sin_family = AF_INET;
   serverAddr.sin_port = htons(port);
-
+ 
   if (inet_pton(AF_INET, ip.c_str(), &serverAddr.sin_addr) <= 0) {
     std::cerr << "Ошибка: некорректный ip-адрес\n";
     return false;
@@ -47,7 +48,7 @@ bool TcpClient::connect(const std::string &ip, int port) {
   }
   return true;
 }
-
+ 
 bool TcpClient::do_handshake() {
   std::vector<unsigned char> role_packet;
   if (!recv_packet(socket, role_packet) || role_packet.empty()) {
@@ -89,7 +90,7 @@ bool TcpClient::do_handshake() {
   std::cout << "Соединение зашифровано\n";
   return true;
 }
-
+ 
 bool TcpClient::send_message(const std::string &msg) {
   if (socket < 0) {
     std::cerr << "Ошибка: сокет не создан\n";
@@ -102,7 +103,7 @@ bool TcpClient::send_message(const std::string &msg) {
   }
   return true;
 }
-
+ 
 bool TcpClient::receive_message() {
   if (socket < 0) {
     std::cerr << "Ошибка: сокет не создан\n";
@@ -115,9 +116,12 @@ bool TcpClient::receive_message() {
   }
   std::string msg = crypto_.decrypt(data);
   std::cout << msg << std::endl;
+  if (on_message_) {
+    on_message_(msg);
+  }
   return true;
 }
-
+ 
 bool TcpClient::close() {
   if (socket < 0) {
     std::cerr << "Ошибка: сокет не создан\n";
