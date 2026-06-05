@@ -51,9 +51,10 @@ endfunction()
 # Исходники — пути относительные, разделитель /
 # ---------------------------------------------------------------------------
 set(CORE_SOURCES
-    ${CMAKE_SOURCE_DIR}/../src/tcp_client.cpp
-    ${CMAKE_SOURCE_DIR}/../src/tcp_server.cpp
-    ${CMAKE_SOURCE_DIR}/../src/packet.cpp
+    ${CMAKE_SOURCE_DIR}/src/tcp_client.cpp
+    ${CMAKE_SOURCE_DIR}/src/tcp_server.cpp
+    ${CMAKE_SOURCE_DIR}/src/packet.cpp
+    ${CMAKE_SOURCE_DIR}/include
 )
 
 set(GUI_SOURCES
