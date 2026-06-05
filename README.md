@@ -127,7 +127,7 @@ tmux attach -t messenger
 ### Клиент
 
 ```bash
-./build/messenger_gui
+./build/gui/messenger_gui
 ```
 
 После запуска:
@@ -152,10 +152,6 @@ ctest --test-dir build
 ## Документация
 
 Сгенерировать документацию:
-
-```bash
-doxygen Doxyfile
-```
 
 Открыть главную страницу:
 
@@ -231,8 +227,6 @@ SSL_ERROR_SYSCALL
 ```bash
 git clone https://github.com/mamuraveva/messenger.git
 ```
-
-При необходимости использовать VPN.
 
 ---
 
