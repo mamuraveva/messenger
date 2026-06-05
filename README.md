@@ -162,7 +162,133 @@ doxygen Doxyfile
 ```text
 docs/html/index.html
 ```
+## Возможные проблемы
 
+### Не задана переменная VCPKG_ROOT
+
+Ошибка:
+
+```text
+Could not find toolchain file:
+scripts/buildsystems/vcpkg.cmake
+```
+
+Причина: не задана переменная окружения `VCPKG_ROOT`.
+
+Решение:
+
+```bash
+export VCPKG_ROOT=~/vcpkg
+```
+
+После этого повторить конфигурацию проекта.
+
+---
+
+### Репозиторий уже существует
+
+Ошибка:
+
+```text
+destination path 'messenger' already exists and is not an empty directory
+```
+
+Причина: папка проекта уже существует.
+
+Решение:
+
+Если репозиторий уже был клонирован:
+
+```bash
+cd messenger
+git pull
+```
+
+Если требуется чистая установка:
+
+```bash
+rm -rf ~/messenger
+git clone https://github.com/mamuraveva/messenger.git
+```
+
+---
+
+### Ошибка подключения к GitHub
+
+Ошибка:
+
+```text
+SSL connection timeout
+SSL_ERROR_SYSCALL
+```
+
+Причина: нестабильное интернет-соединение.
+
+Решение:
+
+Повторить команду через несколько минут:
+
+```bash
+git clone https://github.com/mamuraveva/messenger.git
+```
+
+При необходимости использовать VPN.
+
+---
+
+### Конфликт старой сборки CMake
+
+Ошибка:
+
+```text
+Specify a unique binary directory name
+```
+
+Причина: в проекте остались файлы предыдущей сборки.
+
+Решение:
+
+```bash
+rm -rf build
+rm -rf gui/build
+```
+
+После этого выполнить сборку заново:
+
+```bash
+cmake --preset vcpkg
+cmake --build build
+```
+
+---
+
+### Ошибка подключения клиента к серверу
+
+Ошибка:
+
+```text
+Ошибка установки зашифрованного соединения
+```
+
+Возможные причины:
+
+- сервер не запущен;
+- указан неверный IP-адрес;
+- указан неверный порт;
+- подключён только один клиент.
+
+Проверить запуск сервера:
+
+```bash
+./build/server 8080
+```
+
+Для тестирования локально можно запустить сервер и два клиента на одной машине:
+
+```text
+IP: 127.0.0.1
+Порт: 8080
+```
 ## Автор
 
 Мария Муравьёва
