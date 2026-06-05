@@ -87,3 +87,4 @@ endif()
 
 enable_testing()
 add_test(NAME all_tests COMMAND tests)
+add_subdirectory(gui)
