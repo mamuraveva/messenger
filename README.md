@@ -8,97 +8,127 @@
 
 ## Основные возможности
 
-- подключение к удалённому серверу;
-- обмен сообщениями в реальном времени;
-- сквозное шифрование сообщений (End-to-End Encryption);
-- графический интерфейс на Qt;
-- модульное тестирование с помощью Doctest;
-- автоматическая документация Doxygen.
+* подключение к удалённому серверу;
+* обмен сообщениями в реальном времени;
+* сквозное шифрование сообщений (End-to-End Encryption);
+* графический интерфейс на Qt;
+* модульное тестирование с помощью Doctest;
+* автоматическая документация Doxygen.
 
 ## Структура проекта
 
-- `Crypto` — генерация ключей, шифрование и расшифровка сообщений;
-- `Packet` — передача пакетов по сети;
-- `TcpClient` — клиентская часть;
-- `TcpServer` — серверная часть;
-- `ChatClient` — адаптер между сетевой частью и Qt;
-- `ConnectDialog` — окно подключения;
-- `MainWindow` — главное окно приложения.
+* `Crypto` — генерация ключей, шифрование и расшифровка сообщений;
+* `Packet` — передача пакетов по сети;
+* `TcpClient` — клиентская часть;
+* `TcpServer` — серверная часть;
+* `ChatClient` — адаптер между сетевой частью и Qt;
+* `ConnectDialog` — окно подключения;
+* `MainWindow` — главное окно приложения.
 
 ## Требования
 
-- C++17-совместимый компилятор;
-- CMake 3.16 или новее;
-- vcpkg (зависимости libsodium, doctest, Qt6 устанавливаются автоматически).
+* C++17-совместимый компилятор;
+* CMake 3.16 или новее;
+* vcpkg (зависимости libsodium, doctest, Qt6 устанавливаются автоматически).
 
 ## Установка и сборка
 
 ### macOS
 
-**1. Установить Homebrew**
+#### 1. Установить Homebrew
 
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
-**2. Установить зависимости для сборки**
+#### 2. Установить зависимости для сборки
 
+```bash
 brew install autoconf autoconf-archive automake libtool make
+```
 
-**3. Клонировать и собрать vcpkg**
+#### 3. Клонировать и собрать vcpkg
 
+```bash
 git clone https://github.com/microsoft/vcpkg.git ~/vcpkg
 ~/vcpkg/bootstrap-vcpkg.sh
+```
 
-**4. Задать переменные окружения**
+#### 4. Задать переменные окружения
 
+```bash
 export VCPKG_ROOT=~/vcpkg
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+```
 
-**5. Клонировать репозиторий**
+#### 5. Клонировать репозиторий
 
+```bash
 git clone https://github.com/mamuraveva/messenger.git
 cd messenger
+```
 
-**6. Собрать проект**
+#### 6. Собрать проект
 
+```bash
 cmake --preset vcpkg
 cmake --build build
+```
 
-### Ubuntu/Debian
+### Ubuntu / Debian
 
-**1. Установить зависимости**
+#### 1. Установить зависимости
 
+```bash
 sudo apt install cmake g++ pkg-config libsodium-dev
+```
 
-**2. Клонировать репозиторий**
+#### 2. Клонировать репозиторий
 
+```bash
 git clone https://github.com/mamuraveva/messenger.git
 cd messenger
+```
 
-**3. Собрать проект**
+#### 3. Собрать проект
 
+```bash
 cmake -B build
 cmake --build build
+```
 
 ## Запуск
 
 ### Сервер
 
+```bash
 ./build/server 8080
+```
 
 Для запуска на VPS рекомендуется использовать tmux:
 
+```bash
 tmux new -s messenger
 ./build/server 8080
+```
 
-Отсоединиться без остановки сервера: `Ctrl+B`, затем `D`
+Отсоединиться без остановки сервера:
+
+```text
+Ctrl+B, затем D
+```
 
 Вернуться в сессию:
 
+```bash
 tmux attach -t messenger
+```
 
 ### Клиент
 
+```bash
 ./build/messenger_gui
+```
 
 После запуска:
 
@@ -115,17 +145,25 @@ tmux attach -t messenger
 
 ## Тестирование
 
+```bash
 ctest --test-dir build
+```
 
 ## Документация
 
 Сгенерировать документацию:
 
+```bash
 doxygen Doxyfile
+```
 
-Открыть главную страницу: `docs/html/index.html`
+Открыть главную страницу:
+
+```text
+docs/html/index.html
+```
 
 ## Автор
 
-Мария Муравьева
+Мария Муравьёва
 
